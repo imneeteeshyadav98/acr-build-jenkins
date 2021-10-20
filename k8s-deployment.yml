@@ -20,7 +20,7 @@ spec:
      - containerPort: 80
 
 kind: Service
-apiVersion: v1
+apiVersion: apps/v1
 metadata:
  name: webserver
 spec:
