@@ -1,0 +1,34 @@
+piVersion: v1
+kind: Namespace
+metadata:
+  name: sysadminas  
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: sysadminas
+  name: nginx
+  labels:
+    app: nginx
+    environment: sysadminas
+spec:
+  containers:
+  - image: nginx
+    name: nginx
+    ports:
+    - containerPort: 80
+      protocol: TCP   
+--- 
+kind: Service
+apiVersion: v1
+metadata:
+  name:  nginx
+  namespace: sysadminas
+spec:
+  selector:
+    app: nginx
+    environment: sysadminas
+  type:  LoadBalancer
+  ports:
+  - port:  80
+    targetPort:  80
